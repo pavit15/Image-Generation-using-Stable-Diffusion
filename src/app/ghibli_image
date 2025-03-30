@@ -1,0 +1,81 @@
+from diffusers import StableDiffusionXLImg2ImgPipeline, DDIMScheduler
+from PIL import Image
+import torch
+import gradio as gr
+import cv2
+import numpy as np
+
+# Load the BEST available model (8x more powerful than SD1.5)
+pipe = StableDiffusionXLImg2ImgPipeline.from_pretrained(
+    "stabilityai/stable-diffusion-xl-refiner-1.0",
+    torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
+    variant="fp16",
+    use_safetensors=True
+).to("cuda" if torch.cuda.is_available() else "cpu")
+
+# Hyper-tuned configuration
+pipe.scheduler = DDIMScheduler.from_config(
+    pipe.scheduler.config,
+    steps_offset=1,
+    beta_start=0.0005,
+    beta_end=0.008,
+    clip_sample=False
+)
+
+def enhance_face(img):
+    """Pro-level face enhancement"""
+    img = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
+    img = cv2.bilateralFilter(img, 9, 75, 75)
+    img = cv2.detailEnhance(img, sigma_s=5, sigma_r=0.15)
+    return Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+
+def ghiblify_image(input_img):
+    try:
+        # 1. Ultra-HD Face Processing
+        img = Image.fromarray(input_img.astype('uint8'), 'RGB')
+        img = img.resize((1024, 1024))
+        img = enhance_face(img)
+        
+        # 2. Perfectionist Prompt
+        prompt = (
+            "Studio Ghibli official artwork, EXACT facial features preservation, "
+            "identical eyes/nose/mouth <2% difference, Hayao Miyazaki line art, "
+            "watercolor textures, soft lighting, anime masterpiece, 16k resolution"
+        )
+        
+        # 3. Precision Transformation
+        result = pipe(
+            prompt=prompt,
+            image=img,
+            strength=0.25,  # Ultra-conservative
+            guidance_scale=4,  # Strict similarity
+            num_inference_steps=50,  # Maximum refinement
+            generator=torch.Generator().manual_seed(42),
+            denoising_end=0.8  # Preserve details
+        ).images[0]
+        
+        return result.resize((768, 768))
+    
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
+
+# Premium UI
+with gr.Blocks(theme=gr.themes.Glass()) as app:
+    gr.Markdown("# 🌸 Ultimate Ghibli Face Transformer")
+    
+    with gr.Row():
+        with gr.Column():
+            gr.Markdown("### Upload Your Image")
+            input_img = gr.Image(label="", type="numpy")
+        with gr.Column():
+            gr.Markdown("### Global-Hot Result")
+            output_img = gr.Image(label="", interactive=False)
+    
+    with gr.Row():
+        status = gr.Textbox(label="Progress", value="Ready...")
+    
+    transform_btn = gr.Button("✨ Create Magic!", variant="primary")
+    transform_btn.click(ghiblify_image, inputs=input_img, outputs=output_img)
+
+app.launch(share=True)
