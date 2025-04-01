@@ -5,35 +5,37 @@ This is a deep learning-based project that transforms text prompts into high qua
 ---
 
 ## Table of Contents
-- Features
-- Technologies Used
-- [How It Actually Works](#how-it-actually-works)
-- [Tech Stack](#tech-stack)
-- Installation Guide
-- Usage Guide
-- Sample Input/Output
-- License
+## Table of Contents
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Installation Guide](#installation-guide)
+- [Usage Guide](#usage-guide)
+- [Sample Input/Output](#sample-inputoutput)
+- [Troubleshooting](#troubleshooting)
+- [License](#license)
 
 ---
 
 ## Features
-- **Text-to-Image Generation**: Create detailed images from textual prompts.
-- **Customizable Outputs**: Adjust parameters like resolution, sampling steps, and guidance scale for better results.
-- **GUI Interface**: User-friendly graphical interface for seamless interaction.
-- **Batch Processing**: Generate multiple images at once.
-- **Model Fine-tuning Support**: Option to use fine-tuned models for specialized outputs.
+
+- **Text-to-Image Generation**: Create detailed images from text descriptions
+- **Customizable Outputs**: Control resolution, steps, guidance scale and seed
+- **Image-to-Image**: Modify existing images with text prompts
+- **Optimized Performance**: Works on both GPU and CPU
+- **User-Friendly Interface**: Simple command line interface
 
 ---
 
-## Technologies Used
-- **Python**: Core language for implementation.
-- **Stable Diffusion**: Deep learning model for text-to-image generation.
-- **Hugging Face Diffusers**: Library for running diffusion models.
-- **PyTorch**: Deep learning framework.
-- **Gradio**: For creating a simple and interactive user interface.
-- **Transformers**: For handling model processing.
-- **Pillow**: For image processing.
+## Technology Stack
 
+| Component | Purpose | Why I Chose It |
+|-----------|---------|----------------|
+| Python 3.9+ | Main language | Most support for ML libraries |
+| PyTorch | Neural network framework | Best for research and experimentation |
+| Hugging Face Diffusers | Pretrained models | Easy-to-use implementation |
+| Transformers | Text processing | Handles prompt encoding efficiently |
+| CUDA | GPU acceleration | Speeds up generation 5-10x |
+| Pillow | Image handling | Simple image saving/loading |
 ---
 
 ## How It Actually Works
@@ -51,17 +53,8 @@ This is a deep learning-based project that transforms text prompts into high qua
    - This makes it feasible to run on consumer hardware
 
 
-## Tech Stack
 
 
-| Component | Purpose | Why I Chose It |
-|-----------|---------|----------------|
-| Python 3.9+ | Main language | Most support for ML libraries |
-| PyTorch | Neural network framework | Best for research and experimentation |
-| Hugging Face Diffusers | Pretrained models | Easy-to-use implementation |
-| Transformers | Text processing | Handles prompt encoding efficiently |
-| CUDA | GPU acceleration | Speeds up generation 5-10x |
-| Pillow | Image handling | Simple image saving/loading |
 ## Installation Guide
 
 ### Prerequisites
