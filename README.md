@@ -65,7 +65,7 @@ This is a deep learning-based project that transforms text prompts into high qua
 
 1. **Clone the Repository**
    ```bash
-   git clone <repository_url>
+   git clone https://github.com/pavit15/Image-Generation-using-Stable-Diffusion.git
    cd Image-Generation-using-Stable-Diffusion
    ```
 
@@ -83,6 +83,9 @@ This is a deep learning-based project that transforms text prompts into high qua
    python -m pip install --upgrade pip
    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
    pip install diffusers transformers gradio pillow
+
+   OR run:
+   pip install -r requirements.txt
    ```
 
 4. **Configure Python Interpreter**
@@ -97,6 +100,8 @@ To start the image generation interface, run:
 ```bash
 python app.py
 ```
+
+
 
 ### Application Workflow
 
@@ -128,6 +133,21 @@ python app.py
 
 ![image](https://github.com/user-attachments/assets/ed0eec2c-c8ec-4b4e-9932-154ec54b2281)  
 
+Parameters Used:
+Steps: 50
+Guidance Scale: 7.5
+Seed: 1234
+Size: 512×512
+---
+
+## Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| CUDA out of memory | Reduce image size (`--width 512 --height 512`) |
+| Blurry images | Increase steps (`--steps 50`) |
+| Strange artifacts | Adjust guidance scale (`--guidance_scale 7.5`) |
+| Slow generation | Use `--half` precision |
 ---
 
 ## License
