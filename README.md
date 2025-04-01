@@ -95,13 +95,41 @@ This is a deep learning-based project that transforms text prompts into high qua
 
 ## Usage Guide
 
-### Launch the Application
-To start the image generation interface, run:
+### For Web Interface (Flask)
 ```bash
-python app.py
-```
+# Navigate to src directory
+cd src/app
 
+# Install requirements
+```bash
+pip install -r requirements.txt
 
+# Run the Flask application
+```bash
+python main.py
+
+Then open http://localhost:5000 in your browser.
+
+For Command Line Usage
+```bash
+# From project root
+python src/app/main.py --cli --prompt "your prompt here" --output image.png
+
+Available Arguments (CLI Mode)
+Argument	Description	Default
+--cli	Enable command line mode	False
+--prompt	Text description for generation	(required)
+--output	Output file path	"output.png"
+--steps	Number of diffusion steps	30
+--width	Image width	512
+--height	Image height	512
+
+Web Interface Features:
+- Interactive prompt input
+- Real-time preview
+- Parameter sliders
+- Image gallery
+- Download capability
 
 ### Application Workflow
 
