@@ -99,14 +99,17 @@ This is a deep learning-based project that transforms text prompts into high qua
 ```bash
 # Navigate to src directory
 cd src/app
+ ```
 
 # Install requirements
 ```bash
 pip install -r requirements.txt
+ ```
 
 # Run the Flask application
 ```bash
 python main.py
+ ```
 
 Then open http://localhost:5000 in your browser.
 
@@ -114,6 +117,7 @@ For Command Line Usage
 ```bash
 # From project root
 python src/app/main.py --cli --prompt "your prompt here" --output image.png
+ ```
 
 Available Arguments (CLI Mode)
 Argument	Description	Default
