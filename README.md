@@ -1,12 +1,14 @@
 # Image Generation using Stable Diffusion
 
-Image Generation using Stable Diffusion is a deep learning-based project that transforms text prompts into high-quality images. Leveraging the power of Stable Diffusion, this model enables users to generate visually stunning artwork, making it a valuable tool for artists, designers, and AI enthusiasts. By seamlessly translating complex descriptions into detailed visuals, it highlights the immense potential of AI in creative expression.
+This is a deep learning-based project that transforms text prompts into high quality images. Leveraging the power of Stable Diffusion, this model enables users to generate visually stunning artwork, making it a valuable tool for artists and designers. By translating complex descriptions into detailed visuals, it highlights the immense potential of AI in creative expression.
 
 ---
 
 ## Table of Contents
 - Features
 - Technologies Used
+- [How It Actually Works](#how-it-actually-works)
+- [Tech Stack](#tech-stack)
 - Installation Guide
 - Usage Guide
 - Sample Input/Output
@@ -34,6 +36,32 @@ Image Generation using Stable Diffusion is a deep learning-based project that tr
 
 ---
 
+## How It Actually Works
+
+1. **From Words to Numbers**  
+   Your text prompt gets converted into numerical embeddings using CLIP - this helps the AI "understand" the request.
+
+2. **The Artistic Process**  
+   The model starts with random noise (like TV static) and gradually refines it over multiple steps (typically 30-50), guided by your text.
+
+3. **Efficient Generation**  
+   Instead of working directly at high resolution, the AI:
+   - Operates in a compressed "latent space" (64×64)
+   - Uses a VQ-GAN decoder to upscale to 512×512
+   - This makes it feasible to run on consumer hardware
+
+
+## Tech Stack
+
+
+| Component | Purpose | Why I Chose It |
+|-----------|---------|----------------|
+| Python 3.9+ | Main language | Most support for ML libraries |
+| PyTorch | Neural network framework | Best for research and experimentation |
+| Hugging Face Diffusers | Pretrained models | Easy-to-use implementation |
+| Transformers | Text processing | Handles prompt encoding efficiently |
+| CUDA | GPU acceleration | Speeds up generation 5-10x |
+| Pillow | Image handling | Simple image saving/loading |
 ## Installation Guide
 
 ### Prerequisites
