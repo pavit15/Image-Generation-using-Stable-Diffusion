@@ -170,6 +170,7 @@ Steps: 50
 Guidance Scale: 7.5
 Seed: 1234
 Size: 512×512
+
 ---
 
 ## Troubleshooting
