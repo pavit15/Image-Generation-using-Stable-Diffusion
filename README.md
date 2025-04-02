@@ -57,83 +57,72 @@ This is a deep learning-based project that transforms text prompts into high qua
 
 ## Installation Guide
 
-### Prerequisites
-- Install Python (version 3.8 or above) from the official [Python website](https://www.python.org/).
-- Install VS Code or Jupyter Notebook for code execution.
+## 📋 Prerequisites
 
-### Setup Steps
+- **Hardware**:
+  - NVIDIA GPU (recommended) with at least 8GB VRAM
+  - 10GB+ free disk space for models
+  - 16GB+ RAM for optimal performance
 
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/pavit15/Image-Generation-using-Stable-Diffusion.git
-   cd Image-Generation-using-Stable-Diffusion
-   ```
+- **Software**:
+  - Python 3.7+
+  - CUDA 11.7+ (if using NVIDIA GPU)
+  - cuDNN (for GPU acceleration)
 
-2. **Set Up Virtual Environment**
-   Open a terminal in VS Code and run:
-   ```bash
-   python -m venv venv
-   venv\Scripts\activate  # On Windows
-   # Use `source venv/bin/activate` for Mac/Linux
-   ```
+## 🛠 Installation Guide
 
-3. **Install Dependencies**
-   Upgrade `pip` and install the required libraries:
-   ```bash
-   python -m pip install --upgrade pip
-   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-   pip install diffusers transformers gradio pillow
+### Method 1: Conda (Recommended for Isolation)
 
-   OR run:
-   pip install -r requirements.txt
-   ```
+```bash
+# Create and activate conda environment
+conda create -n sd_env python=3.8 -y
+conda activate sd_env
 
-4. **Configure Python Interpreter**
-   Press `Ctrl + Shift + P` in VS Code, search for "Python: Select Interpreter", and choose the one from the `venv` folder.
+# Install PyTorch with CUDA support
+conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
+
+# Clone repository
+git clone https://github.com/pavit15/Image-Generation-using-Stable-Diffusion.git
+cd Image-Generation-using-Stable-Diffusion
+
+# Install dependencies
+pip install -r requirements.txt
 
 ---
 
+### Method 2: Virtual Environment
+
+```bash
+# Create virtual environment
+python -m venv sd_venv
+source sd_venv/bin/activate  # Linux/Mac
+# or sd_venv\Scripts\activate  # Windows
+```
+
+### Post-Installation Verification
+```bash
+python -c "import torch; print(torch.cuda.is_available())"
+```
+Should output 'True' if GPU is properly configured
+
 ## Usage Guide
 
-### For Web Interface (Flask)
+Running the Jupyter Notebook
 ```bash
-# Navigate to src directory
-cd src/app
- ```
+jupyter notebook StableDiffusion.ipynb
+```
 
-# Install requirements
-```bash
-pip install -r requirements.txt
- ```
+### Basic Image Generation
+1. Open the notebook in Jupyter
+2. Run all cells sequentially
+3. Modify these key parameters in the generation cell:
+   prompt = "A beautiful landscape of mountains at sunset"
+   negative_prompt = "blurry, low quality, distortion"
+   num_inference_steps = 50  # More steps = better quality
+   guidance_scale = 7.5      # Higher = more prompt adherence
+   height, width = 512, 512  # Image dimensions
 
-# Run the Flask application
-```bash
-python main.py
- ```
-
-Then open http://localhost:5000 in your browser.
-
-For Command Line Usage
-```bash
-# From project root
-python src/app/main.py --cli --prompt "your prompt here" --output image.png
- ```
-
-Available Arguments (CLI Mode)
-Argument	Description	Default
---cli	Enable command line mode	False
---prompt	Text description for generation	(required)
---output	Output file path	"output.png"
---steps	Number of diffusion steps	30
---width	Image width	512
---height	Image height	512
-
-Web Interface Features:
-- Interactive prompt input
-- Real-time preview
-- Parameter sliders
-- Image gallery
-- Download capability
+   
 
 ### Application Workflow
 
