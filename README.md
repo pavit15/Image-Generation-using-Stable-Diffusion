@@ -122,8 +122,6 @@ jupyter notebook StableDiffusion.ipynb
    guidance_scale = 7.5      # Higher = more prompt adherence
    height, width = 512, 512  # Image dimensions
 
-   
-
 ### Application Workflow
 
 1. **Enter Prompt**
@@ -154,12 +152,6 @@ jupyter notebook StableDiffusion.ipynb
 
 ![image](https://github.com/user-attachments/assets/ed0eec2c-c8ec-4b4e-9932-154ec54b2281)  
 
-Parameters Used:
-Steps: 50
-Guidance Scale: 7.5
-Seed: 1234
-Size: 512×512
-
 ---
 
 ## Troubleshooting
@@ -174,8 +166,4 @@ Size: 512×512
 
 ## License
 This project is licensed under the **MIT License**. Feel free to use, modify, and distribute it under the license terms.
-
 ---
-
-
-
