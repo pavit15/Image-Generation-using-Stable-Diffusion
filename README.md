@@ -166,5 +166,5 @@ jupyter notebook StableDiffusion.ipynb
 
 ## License
 
-This project is licensed under the **MIT License**. Feel free to use, modify, and distribute it under the license terms.
+#### This project is licensed under the **MIT License**. Feel free to use, modify, and distribute it under the license terms.
 ---
